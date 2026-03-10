@@ -1,0 +1,10 @@
+{
+  "name": "sitechatgpt",
+  "version": "1.0.0",
+  "description": "Painel web com login, QR e agendamento de mensagens para WhatsApp",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "check": "node --check src/server.js"
+  }
+}

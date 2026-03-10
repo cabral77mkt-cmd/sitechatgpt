@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel WhatsApp Scheduler</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <section id="auth-card" class="card">
+        <h1>WhatsApp Scheduler</h1>
+        <p>Faça login para conectar seu próprio WhatsApp.</p>
+        <form id="auth-form">
+          <input id="username" placeholder="Usuário" required />
+          <input id="password" type="password" placeholder="Senha" required />
+          <div class="row">
+            <button type="submit">Entrar</button>
+            <button type="button" id="register-btn" class="secondary">Cadastrar</button>
+          </div>
+        </form>
+        <p id="auth-message" class="message"></p>
+      </section>
+
+      <section id="panel" class="card hidden">
+        <header class="header-row">
+          <div>
+            <h2 id="welcome"></h2>
+            <p>Conecte via QR e agende mensagens para números ou grupos.</p>
+          </div>
+          <button id="logout-btn" class="secondary">Sair</button>
+        </header>
+
+        <div class="grid">
+          <div class="subcard">
+            <h3>Conexão WhatsApp</h3>
+            <button id="connect-btn">Gerar / Atualizar QR</button>
+            <button id="confirm-connect-btn" class="secondary">Já escaneei o QR</button>
+            <p id="wa-status">Status: aguardando...</p>
+            <canvas id="qr-canvas" class="qr"></canvas>
+            <a id="open-wa-link" href="https://web.whatsapp.com/" target="_blank">Abrir WhatsApp Web</a>
+            <p class="hint">Tentamos abrir dentro do painel abaixo; se o navegador bloquear, use o link acima.</p>
+          </div>
+
+          <div class="subcard">
+            <h3>Novo Agendamento</h3>
+            <form id="schedule-form">
+              <select id="target-type" required>
+                <option value="numero">Número</option>
+                <option value="grupo">Grupo / Pessoal</option>
+              </select>
+              <input id="target" placeholder="5511999999999 ou nome interno do grupo" required />
+              <textarea id="message" rows="4" placeholder="Mensagem" required></textarea>
+              <input id="scheduled-at" type="datetime-local" required />
+              <button type="submit">Agendar mensagem</button>
+            </form>
+            <p id="schedule-message" class="message"></p>
+          </div>
+        </div>
+
+        <div class="subcard">
+          <h3>Próximos envios</h3>
+          <button id="refresh-btn" class="secondary">Atualizar lista</button>
+          <div id="schedule-list"></div>
+        </div>
+
+        <div class="subcard">
+          <h3>WhatsApp dentro do painel</h3>
+          <iframe id="wa-frame" src="https://web.whatsapp.com/" title="WhatsApp Web"></iframe>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

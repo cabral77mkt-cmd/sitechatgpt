@@ -1,0 +1,19 @@
+:root { color-scheme: dark; font-family: Arial, sans-serif; }
+body { margin: 0; background: #0f172a; color: #e2e8f0; }
+.container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+.card,.subcard { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+.hidden { display: none; }
+input,button,textarea,select { width: 100%; margin: 8px 0; padding: 10px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #e2e8f0; }
+button { cursor: pointer; background: #22c55e; border: none; font-weight: bold; }
+button.secondary { background: #334155; }
+.row { display: flex; gap: 8px; }
+.row > * { flex: 1; }
+.grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+.header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.qr { background: #fff; border-radius: 8px; max-width: 260px; }
+.message { min-height: 20px; }
+.hint { font-size: 12px; color: #94a3b8; }
+.item { border: 1px solid #334155; border-radius: 8px; padding: 10px; margin-top: 8px; }
+.item .meta { font-size: 12px; color: #94a3b8; }
+iframe { width: 100%; min-height: 500px; border: 1px solid #334155; border-radius: 10px; background: #fff; }
+@media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
