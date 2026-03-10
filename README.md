@@ -15,6 +15,18 @@ npm start
 
 Acesse: `http://localhost:3000`
 
+## Usuário padrão para teste
+
+Ao iniciar o projeto, se não existir nenhum usuário com o mesmo nome, é criado automaticamente:
+
+- usuário: `admin`
+- senha: `admin123`
+
+Você pode alterar com variáveis de ambiente:
+
+- `DEFAULT_USERNAME`
+- `DEFAULT_PASSWORD`
+
 ## Como funciona o agendamento
 
 - Para **número**, quando chegar o horário o sistema gera um link pronto (`wa.me`) com a mensagem preenchida.

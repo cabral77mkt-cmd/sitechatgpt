@@ -28,6 +28,25 @@ function writeStore(store) {
   fs.writeFileSync(STORE_PATH, JSON.stringify(store, null, 2));
 }
 
+function ensureDefaultUser() {
+  const store = readStore();
+  const defaultUsername = process.env.DEFAULT_USERNAME || 'admin';
+  const defaultPassword = process.env.DEFAULT_PASSWORD || 'admin123';
+
+  const exists = store.users.some((user) => user.username.toLowerCase() === defaultUsername.toLowerCase());
+  if (exists) return;
+
+  store.users.push({
+    id: Date.now(),
+    username: defaultUsername,
+    passwordHash: hashPassword(defaultPassword),
+    createdAt: new Date().toISOString(),
+    isDefault: true
+  });
+  writeStore(store);
+  console.log(`Usuário padrão criado: ${defaultUsername}`);
+}
+
 function hashPassword(password, salt = crypto.randomBytes(16).toString('hex')) {
   const hash = crypto.pbkdf2Sync(password, salt, 100000, 64, 'sha512').toString('hex');
   return `${salt}:${hash}`;
@@ -121,6 +140,8 @@ function processQueue() {
 }
 
 setInterval(processQueue, 3000);
+
+ensureDefaultUser();
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
